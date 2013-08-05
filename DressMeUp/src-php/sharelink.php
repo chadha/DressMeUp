@@ -25,7 +25,7 @@ if ((is_null($description)) || (strlen($description)==0)) {
 }
 
 
-header('Location: '.$url);
+//header('Location: '.$url);
 
 echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'."\n";
 echo '<html>'."\n";
@@ -46,12 +46,11 @@ echo '<meta name="twitter:title" content="'.$title.'" />'."\n";
 echo '<meta name="twitter:description" content="'.$description.'" />'."\n";
 echo '<meta name="twitter:image" content="'.$image.'" />'."\n";
 echo '<meta name="twitter:url" content="'.$url.'">'."\n";
-
-<meta name="twitter:site" content="@nytimes">
+echo '<meta name="twitter:site" content="@nytimes">'."\n";
 
 echo '</head>'."\n";
 echo '<body>'."\n";
-echo '<script>window.location="'.$url.'"</script>';
+//echo '<script>window.location="'.$url.'"</script>';
 echo '</body>'."\n";
 echo '</html>';
 
