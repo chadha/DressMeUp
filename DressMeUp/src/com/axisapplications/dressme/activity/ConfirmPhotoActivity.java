@@ -35,17 +35,12 @@ public class ConfirmPhotoActivity extends BaseActivity {
 		final Button shareButton = (Button) findViewById(R.id.confirmPhotoActivity_buttonShare);
 		shareButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-
-				showEditDialog("Edit message", null, ItemObject.getCurrentItemObject().buildDefaultMessage(), new RunnableAfterText() {
-
-					@Override
-					public void execute(String text) {
-						shareMessage(
-								ItemObject.getCurrentItemObject().retailerItemId,
-								text,
-								ItemObject.getCurrentItemObject().userItemPhoto);
-					}
-				});
+				
+				shareMessage(
+						ItemObject.getCurrentItemObject().retailerItemId,
+						ItemObject.getCurrentItemObject().buildDefaultMessage(),
+						ItemObject.getCurrentItemObject().retailerItemLink,
+						ItemObject.getCurrentItemObject().userItemPhoto);
 			}
 
 		});

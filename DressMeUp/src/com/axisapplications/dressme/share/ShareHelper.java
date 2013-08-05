@@ -20,13 +20,14 @@ public class ShareHelper {
 	Context context;
 	String subject;
 	String message;
+	String link;
 	String imageFilePath;
 
-	public ShareHelper(Context context, String subject, String message,
-			String imageFilePath) {
+	public ShareHelper(Context context, String subject, String message, String link, String imageFilePath) {
 		this.context = context;
 		this.subject = subject;
 		this.message = message;
+		this.link = link;
 		this.imageFilePath = imageFilePath;
 	}
 
@@ -73,32 +74,47 @@ public class ShareHelper {
 						+ info.activityInfo.packageName + "]");
 
 				if (info.activityInfo.packageName.contains("facebook")) {
+					//facebook only shares links
+					
+					
 					// custom facebook action
 					// new PostToFacebookDialog(context, body).show();
-					Toast.makeText(context, "Facebook not implemented.",
-							Toast.LENGTH_SHORT).show();
+//					Toast.makeText(context, "Facebook not implemented.",
+//							Toast.LENGTH_SHORT).show();
+					
+					//Facebook shares only message
+
+					Intent intent = new Intent(Intent.ACTION_SEND);
+					intent.setClassName(info.activityInfo.packageName,
+							info.activityInfo.name);
+					intent.setType("text/plain");
+					intent.putExtra(Intent.EXTRA_TEXT, link);
+					context.startActivity(intent);
 				} else if (info.activityInfo.packageName
 						.contains("com.whatsapp")) {
-					// send two messages
-					if (imageFilePath != null) {
-						// first with image
-						Intent intent1 = new Intent(Intent.ACTION_SEND);
-						intent1.setClassName(info.activityInfo.packageName,
-								info.activityInfo.name);
-						intent1.setType("image/*");
-						intent1.putExtra(Intent.EXTRA_STREAM,
-								Uri.parse(imageFilePath));
-						context.startActivity(intent1);
-					}
+					
+					//whatsapp shares only message
+					String text	= message + (link==null?"":("\n"+link));
 
-					// then text
-					Intent intent2 = new Intent(Intent.ACTION_SEND);
-					intent2.setClassName(info.activityInfo.packageName,
+					Intent intent = new Intent(Intent.ACTION_SEND);
+					intent.setClassName(info.activityInfo.packageName,
 							info.activityInfo.name);
-					intent2.setType("text/plain");
-					intent2.putExtra(Intent.EXTRA_SUBJECT, subject);
-					intent2.putExtra(Intent.EXTRA_TEXT, message);
-					context.startActivity(intent2);
+					intent.setType("text/plain");
+					intent.putExtra(Intent.EXTRA_TEXT, text);
+					context.startActivity(intent);
+					
+				} else if (info.activityInfo.packageName
+						.contains("twitter")) {
+					
+					//twitter shares only message
+					String text	= message + (link==null?"":("\n"+link));
+
+					Intent intent = new Intent(Intent.ACTION_SEND);
+					intent.setClassName(info.activityInfo.packageName,
+							info.activityInfo.name);
+					intent.setType("text/plain");
+					intent.putExtra(Intent.EXTRA_TEXT, text);
+					context.startActivity(intent);
 
 				} else {
 					Intent intent = new Intent(Intent.ACTION_SEND);

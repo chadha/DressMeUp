@@ -311,15 +311,13 @@ public class BaseActivity extends Activity implements SurfaceHolder.Callback {
 
 		return file;
 	}
-
+		
 	/*
 	 * Theoretically it shall be supported to share image AND text, but most
 	 * apps crash
 	 */
-	protected void shareMessage(String subject, String message,
-			String imageFilePath) {
-		ShareHelper shareHelper = new ShareHelper(this, subject, message,
-				imageFilePath);
+	protected void shareMessage(String subject, String message, String link, String imageFilePath) {
+		ShareHelper shareHelper = new ShareHelper(this, subject, message, link, imageFilePath);
 		shareHelper.share();
 	}
 
