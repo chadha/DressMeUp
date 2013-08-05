@@ -97,7 +97,15 @@ if ( $iPod || $iPhone || $iPad ) {
 
 //redirect
 header('Location: '.$redirectLink);
+
+echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'."\n";
+echo '<html>'."\n";
+echo '<head>'."\n";
+echo '</head>'."\n";
+echo '<body>'."\n";
 echo "<script>window.location='".$redirectLink."'</script>";
+echo '</body>'."\n";
+echo '</html>';
 
 logMessage('User httpUserAgent=['.$httpUserAgent.'] redirected to ['.$redirectLink.']');
 
