@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:keepScreenOn="true" >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/layout_background"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="@string/displayDescriptionActivity_message"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/layout_background"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/displayDescriptionActivity_buttonBack"
+            style="@style/style_menubutton"
+            android:drawableTop="@drawable/ic_menu_revert"
+            android:text="@string/buttonBack_label" />
+
+        <Button
+            android:id="@+id/displayDescriptionActivity_buttonShare"
+            style="@style/style_menubutton"
+            android:drawableTop="@drawable/ic_menu_share"
+            android:text="@string/buttonShare_label" />
+
+        <Button
+            android:id="@+id/displayDescriptionActivity_buttonTakePhoto"
+            style="@style/style_menubutton"
+            android:drawableTop="@drawable/ic_menu_camera"
+            android:text="@string/buttonTakePhoto_label" />
+
+        <Button
+            android:id="@+id/displayDescriptionActivity_buttonCoupon"
+            style="@style/style_menubutton"
+            android:drawableTop="@drawable/ic_menu_coupon"
+            android:text="@string/buttonCoupon_label" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/layout_background_inner_white">
+
+        <!-- Whatever your body is -->
+
+        <WebView
+            android:id="@+id/displayDescriptionActivity_webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,1 @@
+./android-res-resize.py --folder $(pwd)/res/drawable-xhdpi

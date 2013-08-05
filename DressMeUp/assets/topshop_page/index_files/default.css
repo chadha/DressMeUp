@@ -1,0 +1,44 @@
+#wrapper_tactical_message {
+	margin: 0;
+	}
+	
+#wrapper_tactical_message ul#tactical_messages {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	}
+
+#cmd_productdisplay ul#tactical_messages {
+	border-bottom:none !important;
+	}
+	
+#tactical_message_espot ul {
+	list-style-type: none;
+	margin: 0 !important;
+	padding: 0 !important;
+	}
+
+#tactical_message_espot ul li {
+	float: left;
+	overflow: hidden;
+	text-indent: -9000px;
+	border-top: 3px solid #e8e8e8;
+	border-bottom: 3px solid #e8e8e8;
+	}
+
+#tactical_message_espot ul li a {
+	display: block;
+	overflow: hidden;
+	text-indent: -9000px;
+	}
+	
+#tactical_message_espot ul li a:hover {
+	background-position: bottom left;
+	}
+	
+#tactical_message_espot ul li.unique {
+	width: 300px;
+	height: 19px;
+	background-color: #EBDFDC;
+	display: block;
+	}

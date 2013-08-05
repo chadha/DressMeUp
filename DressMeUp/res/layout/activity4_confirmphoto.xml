@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:keepScreenOn="true" >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/layout_background"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="@string/confirmPhotoActivity_message"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/layout_background"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/confirmPhotoActivity_buttonBack"
+            style="@style/style_menubutton"
+            android:drawableTop="@drawable/ic_menu_revert"
+            android:text="@string/buttonBack_label" />
+
+        <Button
+            android:id="@+id/confirmPhotoActivity_buttonShare"
+            style="@style/style_menubutton"
+            android:drawableTop="@drawable/ic_menu_share"
+            android:text="@string/buttonShare_label" />
+
+        <Button
+            android:id="@+id/confirmPhotoActivity_buttonScanCode"
+            style="@style/style_menubutton"
+            android:drawableTop="@drawable/ic_menu_qrcode"
+            android:text="@string/buttonScanCode_label" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:background="#000000"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <!-- Whatever your body is -->
+
+        <RelativeLayout
+            android:id="@+id/body_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/layout_background_inner_black"
+            android:orientation="horizontal" >
+
+            <com.axisapplications.dressme.view.FitYAspectRatioImageView
+                android:id="@+id/confirmPhotoActivity_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:background="#ffffff"
+                android:contentDescription="@string/none"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

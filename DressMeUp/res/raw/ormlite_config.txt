@@ -1,0 +1,48 @@
+#
+# generated on 2013/07/29 09:31:31
+#
+# --table-start--
+dataClass=com.axisapplications.dressme.domain.ItemObject
+tableName=items
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=userItemPhoto
+columnName=user_item_photo
+# --field-end--
+# --field-start--
+fieldName=retailerLocationId
+columnName=retailer_location_id
+# --field-end--
+# --field-start--
+fieldName=retailerLocation
+columnName=retailer_location
+# --field-end--
+# --field-start--
+fieldName=retailerItemId
+columnName=retailer_item_id
+# --field-end--
+# --field-start--
+fieldName=retailerItemLink
+columnName=retailer_item_link
+# --field-end--
+# --field-start--
+fieldName=retailerCoupon
+columnName=retailer_coupon
+# --field-end--
+# --field-start--
+fieldName=retailerCouponExpirationDate
+columnName=retailer_coupon_expiration_date
+# --field-end--
+# --field-start--
+fieldName=timestamp
+columnName=timestamp
+indexName=items_timestamp_idx
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

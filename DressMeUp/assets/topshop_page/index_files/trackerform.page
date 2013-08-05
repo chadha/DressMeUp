@@ -1,0 +1,121 @@
+
+
+
+
+
+
+
+(function(){
+try
+{
+	if (Peerius.recsMap == null)
+	{
+		Peerius.recsMap={'':0};
+	} 
+	
+	
+	var url='http://topshop.peerius.com/tracker';
+	
+	
+	
+			if(Peerius.exists('#product_associations'))
+			{
+				var remcr = Peerius.expr('#product_associations');
+				remcr.parentNode.removeChild(remcr);
+			}
+			
+		var refContainer = Peerius.expr("#product_column_3_espot_2");
+		var pRecsContainer = document.createElement("div");
+		pRecsContainer.id = "pRecsContainer";
+		refContainer.parentNode.insertBefore(pRecsContainer,refContainer);
+		var pElem = document.createElement("div");
+		pElem.id = "peeriusRecs1"
+    	pRecsContainer.appendChild(pElem);
+			
+window.s.eVar26="Peerius"; //Arcadia insert for omniture tracking
+
+//jQuery('#product_associations').remove();
+
+if($.isArray(_ArcQ))
+{
+	for(var i=0;i<_ArcQ.length;i++)
+	{
+		if(_ArcQ[i][0]==Arcadia.Product.initDescriptions || _ArcQ[i][0]==Arcadia.Product.initLightbox) _ArcQ[i][0]=function(){};
+	}
+}
+
+setTimeout(function(){
+	$(".associated_product a").click(function(){
+		Peerius.sendClick(jQuery(this).attr('href'));
+	});
+	jQuery(".associated_product").each(function(){
+		peeriusD(this);
+	});
+	
+	peeriusLB();
+},10);
+
+
+	
+	
+	
+		
+			
+			Peerius.injectCss("@CHARSET \"ISO-8859-1\";.associated_product {height: 150px;padding-top: 7px;}.associated_product a {color: #000 !important;font-size: 1em;line-height: normal;width: 108px;text-align: center;text-decoration: none;}#pRecsContainer .association_group{margin-top:-1px;}#pHeader {display: block;height: 22px !important;text-align:center;font-weight:bold;font-size:10px;line-height:22px;}#pTabHeader {display: block;height: 45px !important;overflow: hidden;width: 130px !important;line-height:13px;}#pTabHeader #tab1{float:left;}#pTabHeader #tab2{float:right;}#pTabHeader a.hiddenTab,#pTabHeader a.activeTab {height: 41px !important;width: 53px !important;display:block;float:left;font-weight: bold !important;text-transform: uppercase;text-align: center !important;text-decoration: none !important;padding: 5px;cursor: pointer;font-size: 100%;overflow:hidden;}#pTabHeader a.activeTab {background-color: #FFF !important;color: #666666;border: 1px solid #CCCCCC;border-bottom: none;}#pTabHeader a.hiddenTab {color: #666;background-color: #E8E8E8 !important;color: #666666;margin: 0;}.nobord {border: none;}#peeriusRating{max-width:70px;}");
+		
+	
+	
+	
+		
+			
+			var xpath='#product_column_3_espot_2,ignore';
+			var widgetName="ab_product15_rv";
+			
+			var e=Peerius.recExprs(xpath);
+			if (e && e!='ign')
+			{
+				
+				
+					
+					var id=widgetName+"__"
+					
+					
+				
+				Peerius.recommendCallbackBefore(widgetName)
+				var prDiv = document.getElementById(id);
+				prDiv?prDiv:prDiv = document.createElement("div");
+				prDiv.id=id;
+				
+					
+					
+					
+					prDiv.innerHTML="<div id=\"product_associations\" class=\"frame\"> <img border=0 alt=\"WHY NOT TRY?\" src=\"//media.topshop.com/wcsstore/ConsumerDirectStorefrontAssetStore/images/colors/color14/cms/pages/static/static-0000020872/images/product-details-page-why-not-try-uk.gif\" /> <div class=\"association_group up_sell\"> <div class=\"associated_product\"> <a class=\"product_image\" href=\"http://www.topshop.com/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11181329&langId=-1\" title=\"Marble Zip Bodycon Dress\"> <img alt=\"Marble Zip Bodycon Dress - click to view\" src=\"http://media.topshop.com/wcsstore/TopShop/images/catalog/10N08EMUL_small.jpg\"> </a> <p class=\"product_description\"> <a href=\"http://www.topshop.com/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11181329&langId=-1\" title=\"Marble Zip Bodycon Dress\" > Marble Zip Bodycon Dress <br /> <span class=\"product_price\">£36.00</span> </a> </p> </div> <div class=\"associated_product\"> <a class=\"product_image\" href=\"http://www.topshop.com/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11294900&langId=-1\" title=\"Stomp Ankle Platforms\"> <img alt=\"Stomp Ankle Platforms - click to view\" src=\"http://media.topshop.com/wcsstore/TopShop/images/catalog/32S05EBLK_small.jpg\"> </a> <p class=\"product_description\"> <a href=\"http://www.topshop.com/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11294900&langId=-1\" title=\"Stomp Ankle Platforms\" > Stomp Ankle Platforms <br /> <span class=\"product_price\">£60.00</span> </a> </p> </div> <div class=\"associated_product\"> <a class=\"product_image\" href=\"http://www.topshop.com/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11193579&langId=-1\" title=\"Tall Animal Open Back Teadress\"> <img alt=\"Tall Animal Open Back Teadress - click to view\" src=\"http://media.topshop.com/wcsstore/TopShop/images/catalog/30D08ERED_small.jpg\"> </a> <p class=\"product_description\"> <a href=\"http://www.topshop.com/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11193579&langId=-1\" title=\"Tall Animal Open Back Teadress\" > Tall Animal Open Back Teadress <br /> <span class=\"product_price\">£40.00</span> </a> </p> </div> </div> </div>";
+					e.parentNode.insertBefore(prDiv, e.parentNode.firstChild)
+					
+					
+					
+					
+				
+				
+					Peerius.recsMap[decodeURIComponent('/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11193579&langId=-1')]=57711652736;
+				
+					Peerius.recsMap[decodeURIComponent('/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11181329&langId=-1')]=57711652724;
+				
+					Peerius.recsMap[decodeURIComponent('/webapp/wcs/stores/servlet/ProductDisplay?catalogId=33057&storeId=12556&productId=11294900&langId=-1')]=57711652730;
+				
+				
+				Peerius.fixUrls(prDiv,url,46598);
+				Peerius.recommendCallbackAfter(widgetName)
+			} else if(e!='ign') Peerius.send("error","invalid recommendation xpath:"+xpath,url+"/trackerform.page");
+		
+		
+	
+} catch (e) 
+{
+	Peerius.error("recommendations error",e)
+}
+})();
+
+
+
+

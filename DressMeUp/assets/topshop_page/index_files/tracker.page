@@ -1,0 +1,470 @@
+
+
+
+// <script>
+(function(){
+
+
+
+try {
+	
+// monitors parts of pages modified by ajax, used from tracking scripts
+
+Peerius.hasRun=function() {
+	var hr=window.peeriusHasRun;
+	window.peeriusHasRun=true;
+	if(hr==undefined) return false;
+	return true;
+}
+
+Peerius.changeTracker=function(retriever,checker){
+	var original=null;
+	var intervalHandler=null;
+	var f=function(){
+		var s=retriever();
+		var o=original;
+		original=s;
+		if(o!=null && s!=o) 
+		{
+			if(checker && !checker(s)) return;
+			clearInterval(intervalHandler);
+			Peerius.dynamic();
+			setTimeout(function(){
+				original=retriever();
+				intervalHandler=setInterval(f,500)
+			},1000)
+		}
+	}
+	
+	// wait for the page layout to finalize
+	setTimeout(function(){
+		intervalHandler=setInterval(f,500)
+	},500)
+}
+
+} catch(e) {
+	m=e+"\n";
+	if (e.lineNumber) m+="line:"+e.lineNumber+"\n";
+	if (e.description) m+="description: "+e.description+"\n";
+	Peerius.send("error",m,"http://topshop.peerius.com/tracker/trackerform.page");
+}
+
+function peerius_t()
+{
+Peerius.rId=40345175;
+
+var p_probe=false;
+var lastProbe="";
+
+
+
+
+Peerius.cCookie("peerius_sess","5380620674",4*3600);
+
+
+Peerius.sessionId=5380620674
+
+
+Peerius.cCookie("peerius_user","cuid:3232898534",3600*24*360*20);
+
+
+function p_x()
+{
+	
+	var m="",e,_e,es;
+	var url="http://topshop.peerius.com/tracker/trackerform.page";
+	var db=document.body;
+	try
+	{
+		
+
+		
+			
+			
+				
+				
+				
+					
+					if((document.body.innerHTML.indexOf('We couldn\'t find the page you were looking for')>-1)){
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+					
+						m+="<error>";
+					
+					_e='error';
+					es=_e.split(",");
+					for(var i=0;i<es.length;i++)
+					{
+						_e=es[i];
+						e=Peerius.expr(_e);
+						if (e==null) throw _e+" is invalid for this page";
+						m+=Peerius.eToMsg(_e,e)
+					}
+					
+						m+="</error>";
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					}
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					else {
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+				
+				
+					
+						
+						
+							Peerius.ign['-img']='-img';
+						
+					
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					if(Peerius.exists('#wrapper_bundle_content/div/form/div[1]/h3[0]/a[0]')){
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+					
+						m+="<bundle>";
+					
+					_e='#wrapper_bundle_content/div/form/div[1]/h3[0]/a[0]';
+					es=_e.split(",");
+					for(var i=0;i<es.length;i++)
+					{
+						_e=es[i];
+						e=Peerius.expr(_e);
+						if (e==null) throw _e+" is invalid for this page";
+						m+=Peerius.eToMsg(_e,e)
+					}
+					
+						m+="</bundle>";
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					}
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					if(Peerius.exists('#wrapper_bundle_content/div/div[1]/h3[0]/a[0]')){
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+					
+						m+="<bundle>";
+					
+					_e='#wrapper_bundle_content/div/div[1]/h3[0]/a[0]';
+					es=_e.split(",");
+					for(var i=0;i<es.length;i++)
+					{
+						_e=es[i];
+						e=Peerius.expr(_e);
+						if (e==null) throw _e+" is invalid for this page";
+						m+=Peerius.eToMsg(_e,e)
+					}
+					
+						m+="</bundle>";
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					}
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					if(Peerius.exists('#bundle_column_1/dl[0]/dt[0]/a[0]')){
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+					
+						m+="<bundle>";
+					
+					_e='#bundle_column_1/dl[0]/dt[0]/a[0]';
+					es=_e.split(",");
+					for(var i=0;i<es.length;i++)
+					{
+						_e=es[i];
+						e=Peerius.expr(_e);
+						if (e==null) throw _e+" is invalid for this page";
+						m+=Peerius.eToMsg(_e,e)
+					}
+					
+						m+="</bundle>";
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					}
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					if(Peerius.exists('#productId')){
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+					
+						m+="<productid>";
+					
+					_e='#productId';
+					es=_e.split(",");
+					for(var i=0;i<es.length;i++)
+					{
+						_e=es[i];
+						e=Peerius.expr(_e);
+						if (e==null) throw _e+" is invalid for this page";
+						m+=Peerius.eToMsg(_e,e)
+					}
+					
+						m+="</productid>";
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					}
+				
+				
+				
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+					
+					}
+				
+				
+				
+				
+				
+				
+			
+		
+
+		
+		if (p_probe)
+		{
+			if (m!=lastProbe)
+			{
+				lastProbe=m;
+				throw 'probe again';
+			}
+		}
+		if(Peerius.extraXml) m+=Peerius.extraXml
+		Peerius.send("track","<_>"+m+"</_>",url);
+		p_probe=false;
+		
+		
+	} catch (e)
+	{
+		if(p_probe)
+		{
+			
+			
+				p_probe_cnt++;
+				if (p_probe_cnt>60) p_probe=false; 
+			
+			setTimeout(p_x,50); 
+		} else {
+			m=e+"\n";
+			if(!(typeof e=='string'))
+			{
+				for(var x in e)
+				{
+					try { m+=x+"="+e[x]+"\n" } catch(e){ m+=e }
+				}
+			}
+			
+			Peerius.send("error",m,url);
+		}
+	}
+}
+
+	
+	
+		
+		p_x();
+	
+
+}
+peerius_t();
+
+})();
