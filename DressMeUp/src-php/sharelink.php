@@ -38,9 +38,7 @@ echo '<meta property="og:description" content="'.$description.'" />'."\n";
 echo '<meta property="og:image" content="'.$image.'" />'."\n";
 echo '<meta property="og:url" content="'.$url.'" />'."\n";
 
-
-
-// for Twitterphp
+// for Twitter
 echo '<meta name="twitter:card" content="summary" />'."\n";
 echo '<meta name="twitter:title" content="'.$title.'" />'."\n";
 echo '<meta name="twitter:description" content="'.$description.'" />'."\n";
