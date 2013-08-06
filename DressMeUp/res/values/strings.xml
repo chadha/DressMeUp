@@ -4,11 +4,11 @@
     <string name="app_name">DressMeUp</string>
     <string name="action_settings">Settings</string>
     <string name="none"></string>
-    <string name="captureCodeActivity_message">Point your camera to QR code and place it inside scanning rectangle.</string>
-    <string name="capturePhotoActivity_message">Point your camera to an item and press Take Picture button.</string>
+    <string name="captureCodeActivity_message">Direct your camera at the QR Code, ensuring it is within the target rectangle, and hold for a few seconds.</string>
+    <string name="capturePhotoActivity_message">Direct your camera at the product and press the Take Picture button.</string>
     <string name="displayDescriptionActivity_message">Click Share button to share product with your friends!</string>
     <string name="confirmPhotoActivity_message">Click Share button to share photo with your friends!</string>
-    <string name="savedItemsActivity_message">Browse through saved items. Click on item to recall it!</string>
+    <string name="savedItemsActivity_message">Browse through saved items. Click on item to view it!</string>
     
     <string name="errorDialog_title">Error</string>
     

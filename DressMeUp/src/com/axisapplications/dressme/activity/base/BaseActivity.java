@@ -45,6 +45,8 @@ public class BaseActivity extends Activity implements SurfaceHolder.Callback {
 	public static interface RunnableAfterTakePhoto {
 		void execute(String pathToPhotoImage);
 	}
+	
+	private Boolean debugEnabled	= null; 
 
 	private DatabaseHelper databaseHelper = null;
 
@@ -62,6 +64,18 @@ public class BaseActivity extends Activity implements SurfaceHolder.Callback {
 		surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 		this.autofocus = autofocus;
 		this.previewCallback = previewCallback;
+	}
+	
+	protected boolean isDebugEnabled() {
+		if (debugEnabled==null) {
+			
+			
+			File debugFile = new File(Environment.getExternalStorageDirectory(),"debug");
+			debugEnabled	= Boolean.valueOf(debugFile.exists());
+			Log.i("Debug", "Debug [" + debugEnabled + "]");
+		}
+		
+		return debugEnabled.booleanValue();
 	}
 
 	@Override

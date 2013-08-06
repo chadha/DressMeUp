@@ -65,9 +65,10 @@ public class CaptureCodeActivity extends BaseActivity {
 				String result = decodeImage(data, size.width, size.height, qrCodeCameraPreviewDecoratorView.getPreviewRectangle(), qrCodeCameraPreviewDecoratorView.getFullViewRectangle());
 
 				if (result != null) {
-					Toast.makeText(getApplication(),
-							"DECODED [" + result + "]", Toast.LENGTH_LONG)
-							.show();
+					if (isDebugEnabled()) {
+						Toast.makeText(getApplication(),"DECODED [" + result + "]", Toast.LENGTH_LONG).show();						
+					}
+					
 					Log.i(this.getClass().getSimpleName(), "Decoded [" + result + "]");
 
 					// TODO validate qrCode and split it
@@ -108,6 +109,9 @@ public class CaptureCodeActivity extends BaseActivity {
 
 			}
 		});
+		if (!isDebugEnabled()) {
+			debugNextButton.setVisibility(View.GONE);
+		}
 		
 		final Button debugNextWithCouponButton = (Button) findViewById(R.id.captureCodeActivity_buttonDebugNextWithCoupon);
 		debugNextWithCouponButton.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +128,10 @@ public class CaptureCodeActivity extends BaseActivity {
 
 			}
 		});
+		if (!isDebugEnabled()) {
+			debugNextWithCouponButton.setVisibility(View.GONE);
+		}
+
 		
 		final Button takePhotoButton = (Button) findViewById(R.id.captureCodeActivity_buttonSavedItems);
 		takePhotoButton.setOnClickListener(new View.OnClickListener() {
