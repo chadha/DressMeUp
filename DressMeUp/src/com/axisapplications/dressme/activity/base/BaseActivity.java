@@ -72,7 +72,7 @@ public class BaseActivity extends Activity implements SurfaceHolder.Callback {
 			
 			File debugFile = new File(Environment.getExternalStorageDirectory(),"debug");
 			debugEnabled	= Boolean.valueOf(debugFile.exists());
-			Log.i("Debug", "Debug [" + debugEnabled + "]");
+			Log.i("Debug", "Debug [" + debugEnabled + "] To enable debugging create file [" + debugFile.getAbsolutePath() + "]");
 		}
 		
 		return debugEnabled.booleanValue();
