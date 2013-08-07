@@ -13,7 +13,7 @@ public class FindShopsActivity extends BaseActivity {
 
 		overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
-		setContentView(R.layout.activity_saveditems);
+		setContentView(R.layout.activity_findshops);
 
 		setupBackButton(R.id.findShopsActivity_buttonBack);
 	}
