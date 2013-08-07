@@ -57,6 +57,9 @@ public class ShareHelper {
 
 		List<ResolveInfo> activities = context.getPackageManager()
 				.queryIntentActivities(sendIntent, 0);
+		
+		
+		//filter activities to known ones
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle("Share via");
