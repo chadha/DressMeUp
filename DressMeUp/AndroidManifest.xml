@@ -46,6 +46,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.axisapplications.dressme.activity.FindShopsActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.axisapplications.dressme.activity.EditMessageActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
