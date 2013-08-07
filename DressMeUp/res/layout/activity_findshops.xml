@@ -54,9 +54,8 @@
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
             android:contentDescription="@string/none"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/shops_map" />
     </FrameLayout>
 
