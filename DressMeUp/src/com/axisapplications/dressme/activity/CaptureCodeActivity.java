@@ -1,9 +1,14 @@
 package com.axisapplications.dressme.activity;
 
+import java.net.URI;
 import java.util.Date;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -49,9 +54,8 @@ public class CaptureCodeActivity extends BaseActivity {
 		multiFormatReader = new MultiFormatReader();
 		multiFormatReader.setHints(hints);
 
-		final QRCodeCameraPreviewDecoratorView qrCodeCameraPreviewDecoratorView	= (QRCodeCameraPreviewDecoratorView) findViewById(R.id.captureCodeCameraPreview_decoratorView);
-		
-		
+		final QRCodeCameraPreviewDecoratorView qrCodeCameraPreviewDecoratorView = (QRCodeCameraPreviewDecoratorView) findViewById(R.id.captureCodeCameraPreview_decoratorView);
+
 		PreviewCallback codeScanPreviewCallback = new PreviewCallback() {
 
 			@Override
@@ -62,14 +66,19 @@ public class CaptureCodeActivity extends BaseActivity {
 				Camera.Parameters parameters = camera.getParameters();
 				Size size = parameters.getPreviewSize();
 
-				String result = decodeImage(data, size.width, size.height, qrCodeCameraPreviewDecoratorView.getPreviewRectangle(), qrCodeCameraPreviewDecoratorView.getFullViewRectangle());
+				String result = decodeImage(data, size.width, size.height,
+						qrCodeCameraPreviewDecoratorView.getPreviewRectangle(),
+						qrCodeCameraPreviewDecoratorView.getFullViewRectangle());
 
 				if (result != null) {
 					if (isDebugEnabled()) {
-						Toast.makeText(getApplication(),"DECODED [" + result + "]", Toast.LENGTH_LONG).show();						
+						Toast.makeText(getApplication(),
+								"DECODED [" + result + "]", Toast.LENGTH_LONG)
+								.show();
 					}
-					
-					Log.i(this.getClass().getSimpleName(), "Decoded [" + result + "]");
+
+					Log.i(this.getClass().getSimpleName(), "Decoded [" + result
+							+ "]");
 
 					// TODO validate qrCode and split it
 
@@ -77,10 +86,32 @@ public class CaptureCodeActivity extends BaseActivity {
 					scanning.set(false);
 
 					playSound(R.raw.scan);
-					
+					//safe check
 					ItemObject.getCurrentItemObject().clear();
-					ItemObject.getCurrentItemObject().retailerItemId = "TOPSHOP-32S05EBLK";
-					ItemObject.getCurrentItemObject().retailerLocationId = "TOPSHOP-OXFCRC";
+					ItemObject.getCurrentItemObject().retailerItemId		= ""; 
+					ItemObject.getCurrentItemObject().retailerLocationId	= "";
+
+					try {
+						List<NameValuePair> urlParameters = URLEncodedUtils.parse(new URI(result), "UTF-8");
+						for (NameValuePair p : urlParameters) {
+							final String parameterKey	= p.getName();
+							final String parameterValue	= p.getValue();
+							Log.d("QR CODE PARSE", "Decoded key=[" + parameterKey + "] value=[" + parameterValue + "]");
+							
+							if ("itmid".equalsIgnoreCase(parameterKey)) {
+								ItemObject.getCurrentItemObject().retailerItemId	= parameterValue;
+							} if ("locid".equalsIgnoreCase(parameterKey)) {
+								ItemObject.getCurrentItemObject().retailerLocationId	= parameterValue;
+							} if ("cpnid".equalsIgnoreCase(parameterKey)) {
+								ItemObject.getCurrentItemObject().retailerCoupon	= parameterValue;
+							}
+						}
+
+					} catch (Exception e) {
+						showError("Could not parse code. Skip...");
+					}
+					
+					//validate MessageObject 
 
 					Intent intent = new Intent(getApplicationContext(),
 							DisplayDescriptionActivity.class);
@@ -94,7 +125,7 @@ public class CaptureCodeActivity extends BaseActivity {
 		setupCameraPreviewOnSurfaceView(
 				(SurfaceView) findViewById(R.id.captureCodeCameraPreview_surfaceView),
 				codeScanPreviewCallback, true);
-		
+
 		final Button debugNextButton = (Button) findViewById(R.id.captureCodeActivity_buttonDebugNext);
 		debugNextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -111,62 +142,69 @@ public class CaptureCodeActivity extends BaseActivity {
 		if (!isDebugEnabled()) {
 			debugNextButton.setVisibility(View.GONE);
 		}
-		
+
 		final Button debugNextWithCouponButton = (Button) findViewById(R.id.captureCodeActivity_buttonDebugNextWithCoupon);
-		debugNextWithCouponButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				ItemObject.getCurrentItemObject().clear();
-				ItemObject.getCurrentItemObject().retailerItemId = "TOPSHOP-32S05EBLK";
-				ItemObject.getCurrentItemObject().retailerLocationId = "TOPSHOP-OXFCRC";
-				ItemObject.getCurrentItemObject().retailerCoupon = "20% Off";
-				ItemObject.getCurrentItemObject().retailerCouponExpirationDate = new Date(2014,10,14);
+		debugNextWithCouponButton
+				.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						ItemObject.getCurrentItemObject().clear();
+						ItemObject.getCurrentItemObject().retailerItemId = "TOPSHOP-32S05EBLK";
+						ItemObject.getCurrentItemObject().retailerLocationId = "TOPSHOP-OXFCRC";
+						ItemObject.getCurrentItemObject().retailerCoupon = "20% Off";
 
-				Intent intent = new Intent(getApplicationContext(),
-						DisplayDescriptionActivity.class);
-				startActivity(intent);
+						Intent intent = new Intent(getApplicationContext(),
+								DisplayDescriptionActivity.class);
+						startActivity(intent);
 
-			}
-		});
+					}
+				});
 		if (!isDebugEnabled()) {
 			debugNextWithCouponButton.setVisibility(View.GONE);
 		}
 
-		
 		final Button savedItemsButton = (Button) findViewById(R.id.captureCodeActivity_buttonSavedItems);
 		savedItemsButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),
 						SavedItemsActivity.class);
-				startActivity(intent);			
+				startActivity(intent);
 			}
 		});
-		
+
 		final Button findShopsButton = (Button) findViewById(R.id.captureCodeActivity_buttonFindShops);
 		findShopsButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),
 						FindShopsActivity.class);
-				startActivity(intent);			
+				startActivity(intent);
 			}
 		});
-		
-		//TODO clean up temp folder upon start
+
+		// TODO clean up temp folder upon start
 	}
 
-	private String decodeImage(byte[] data, int width, int height, RectF previewRect, RectF fullViewRect) {
-		if (data.length==0) return null;
-		
+	private String decodeImage(byte[] data, int width, int height,
+			RectF previewRect, RectF fullViewRect) {
+		if (data.length == 0)
+			return null;
+
 		Result rawResult = null;
-		//adjust previewRect to camera dimensions
-		final Rect adjustedPreviewRect	= new Rect();
-		adjustedPreviewRect.set(
-				(int)(previewRect.left*((float)width/fullViewRect.width())),
-				(int)(previewRect.top*((float)height/fullViewRect.height())),
-				(int)(previewRect.right*((float)width/fullViewRect.width())),
-				(int)(previewRect.bottom*((float)height/fullViewRect.height()))
-		);
-		
-		PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(data, width, height, adjustedPreviewRect.left, adjustedPreviewRect.top, adjustedPreviewRect.width(), adjustedPreviewRect.height(), false);
+		// adjust previewRect to camera dimensions
+		final Rect adjustedPreviewRect = new Rect();
+		adjustedPreviewRect
+				.set((int) (previewRect.left * ((float) width / fullViewRect
+						.width())),
+						(int) (previewRect.top * ((float) height / fullViewRect
+								.height())),
+						(int) (previewRect.right * ((float) width / fullViewRect
+								.width())),
+						(int) (previewRect.bottom * ((float) height / fullViewRect
+								.height())));
+
+		PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(data,
+				width, height, adjustedPreviewRect.left,
+				adjustedPreviewRect.top, adjustedPreviewRect.width(),
+				adjustedPreviewRect.height(), false);
 		if (source != null) {
 			BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 			try {
