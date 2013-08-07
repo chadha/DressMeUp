@@ -80,8 +80,8 @@ public class DisplayDescriptionActivity extends BaseActivity {
 		// retailerLocation, retailerCoupon, retailerCouponExpirationDate
 		// (message can be received from page meta data) and retailerLocation
 		// (can be received from local dictionary or server)
-		ItemObject.getCurrentItemObject().retailerItemLink = "http://www.topshop.com/en/tsuk/product/shoes-430/view-all-748/stomp-ankle-platforms-2100367?bi=1&ps=20";
-		//"file:///android_asset/topshop_page/index.html";
+		ItemObject.getCurrentItemObject().retailerItemLink = "file:///android_asset/topshop_page/index.html";		
+		//"http://m.topshop.com/en/tsuk/product/shoes-430/view-all-748/stomp-ankle-platforms-2100367?bi=1&ps=20";
 		ItemObject.getCurrentItemObject().retailerLocation = "Topshop Oxford Street, 36-38 Great Castle Street, Oxford Circus, West End, W1W 8LG";
 
 		// open page
