@@ -9,6 +9,7 @@
     <string name="displayDescriptionActivity_message">Click Share button to share product with your friends!</string>
     <string name="confirmPhotoActivity_message">Click Share button to share photo with your friends!</string>
     <string name="savedItemsActivity_message">Browse through saved items. Click on item to view it!</string>
+    <string name="findShopsActivity_message">Those are shops in your area. Click on marker to view shop details.</string>
     
     <string name="errorDialog_title">Error</string>
     

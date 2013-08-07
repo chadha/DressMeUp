@@ -95,7 +95,6 @@ public class CaptureCodeActivity extends BaseActivity {
 				(SurfaceView) findViewById(R.id.captureCodeCameraPreview_surfaceView),
 				codeScanPreviewCallback, true);
 		
-		
 		final Button debugNextButton = (Button) findViewById(R.id.captureCodeActivity_buttonDebugNext);
 		debugNextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -133,11 +132,20 @@ public class CaptureCodeActivity extends BaseActivity {
 		}
 
 		
-		final Button takePhotoButton = (Button) findViewById(R.id.captureCodeActivity_buttonSavedItems);
-		takePhotoButton.setOnClickListener(new View.OnClickListener() {
+		final Button savedItemsButton = (Button) findViewById(R.id.captureCodeActivity_buttonSavedItems);
+		savedItemsButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),
 						SavedItemsActivity.class);
+				startActivity(intent);			
+			}
+		});
+		
+		final Button findShopsButton = (Button) findViewById(R.id.captureCodeActivity_buttonFindShops);
+		findShopsButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(),
+						FindShopsActivity.class);
 				startActivity(intent);			
 			}
 		});

@@ -26,14 +26,14 @@ public class DisplayDescriptionActivity extends BaseActivity {
 
 		setupBackButton(R.id.displayDescriptionActivity_buttonBack);
 
-		final Button takePhotoButton = (Button) findViewById(R.id.displayDescriptionActivity_buttonTakePhoto);
-		takePhotoButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),
-						CapturePhotoActivity.class);
-				startActivity(intent);
-			}
-		});
+//		final Button takePhotoButton = (Button) findViewById(R.id.displayDescriptionActivity_buttonTakePhoto);
+//		takePhotoButton.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View v) {
+//				Intent intent = new Intent(getApplicationContext(),
+//						CapturePhotoActivity.class);
+//				startActivity(intent);
+//			}
+//		});
 
 		final Button shareButton = (Button) findViewById(R.id.displayDescriptionActivity_buttonShare);
 		shareButton.setOnClickListener(new View.OnClickListener() {

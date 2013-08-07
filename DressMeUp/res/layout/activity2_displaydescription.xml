@@ -39,15 +39,15 @@
         <Button
             android:id="@+id/displayDescriptionActivity_buttonShare"
             style="@style/style_menubutton"
-            android:drawableTop="@drawable/ic_menu_share"
+            android:drawableTop="@drawable/ic_menu_allfriends"
             android:text="@string/buttonShare_label" />
-
+<!--
         <Button
             android:id="@+id/displayDescriptionActivity_buttonTakePhoto"
             style="@style/style_menubutton"
             android:drawableTop="@drawable/ic_menu_camera"
             android:text="@string/buttonTakePhoto_label" />
-
+-->
         <Button
             android:id="@+id/displayDescriptionActivity_buttonCoupon"
             style="@style/style_menubutton"

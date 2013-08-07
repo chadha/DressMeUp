@@ -18,7 +18,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:gravity="center"
-            android:text="@string/captureCodeActivity_message"
+            android:text="@string/findShopsActivity_message"
             android:textSize="12sp" />
     </RelativeLayout>
 
@@ -32,26 +32,10 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/captureCodeActivity_buttonSavedItems"
+            android:id="@+id/findShopsActivity_buttonBack"
             style="@style/style_menubutton"
-            android:drawableTop="@drawable/ic_menu_agenda"
-            android:text="@string/buttonSavedItems_label" />
-        
-        <Button
-            android:id="@+id/captureCodeActivity_buttonFindShops"
-            style="@style/style_menubutton"
-            android:drawableTop="@drawable/ic_menu_compass"
-            android:text="LOCATE SHOPS" />
-
-        <Button
-            android:id="@+id/captureCodeActivity_buttonDebugNext"
-            style="@style/style_menubutton"
-            android:text="Debug: Next" />
-
-        <Button
-            android:id="@+id/captureCodeActivity_buttonDebugNextWithCoupon"
-            style="@style/style_menubutton"
-            android:text="Debug: Next (coupon)" />
+            android:drawableTop="@drawable/ic_menu_revert"
+            android:text="@string/buttonBack_label" />
     </LinearLayout>
 
     <FrameLayout
@@ -60,21 +44,18 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/footer"
         android:layout_below="@id/header"
-        android:background="@drawable/layout_background_inner_black"
+        android:background="@drawable/layout_background_inner_white"
         android:gravity="center"
         android:orientation="vertical" >
 
         <!-- Whatever your body is -->
 
-        <SurfaceView
-            android:id="@+id/captureCodeCameraPreview_surfaceView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <com.axisapplications.dressme.view.QRCodeCameraPreviewDecoratorView
-            android:id="@+id/captureCodeCameraPreview_decoratorView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/none"
+            android:src="@drawable/shops_map" />
     </FrameLayout>
 
 </RelativeLayout>
