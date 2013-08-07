@@ -17,20 +17,12 @@ public class ItemObject {
 		return currentItemObject;
 	}
 	
-	public static void newCurrentItemObject() {
-		currentItemObject = new ItemObject();
-	};
-	
 	public static void setCurrentItem(ItemObject itemObject) {
 		currentItemObject = itemObject;
 	}
 
 	public void clear() {
-		id	= ID_UNDEFINED;
-		userItemPhoto = null;
-		retailerLocationId = null;
-		retailerItemLink = null;
-		retailerItemId = null;
+		currentItemObject = new ItemObject();
 	}
 	
 	public ItemObject() {
