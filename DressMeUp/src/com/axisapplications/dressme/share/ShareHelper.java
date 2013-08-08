@@ -1,6 +1,8 @@
 package com.axisapplications.dressme.share;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.axisapplications.dressme.R;
@@ -24,7 +26,8 @@ public class ShareHelper {
 	String link;
 	String imageFilePath;
 
-	public ShareHelper(Context context, String subject, String message, String link, String imageFilePath) {
+	public ShareHelper(Context context, String subject, String message,
+			String link, String imageFilePath) {
 		this.context = context;
 		this.subject = subject;
 		this.message = message;
@@ -58,23 +61,34 @@ public class ShareHelper {
 
 		List<ResolveInfo> activitiesUnfiltered = context.getPackageManager()
 				.queryIntentActivities(sendIntent, 0);
-		
-		
-		List<ResolveInfo> activities	= new ArrayList<ResolveInfo>();
+
+		List<ResolveInfo> activities = new ArrayList<ResolveInfo>();
 		for (ResolveInfo info : activitiesUnfiltered) {
-			if (
-					(info.activityInfo.packageName.contains("facebook"))||
-					(info.activityInfo.packageName.contains("twitter"))||
-					(info.activityInfo.packageName.contains("whatsapp"))||
-					(info.activityInfo.packageName.contains("instagram"))||
-					(info.activityInfo.packageName.contains("facebook"))
+			if ((info.activityInfo.packageName.contains("facebook"))
+					|| (info.activityInfo.packageName.contains("twitter"))
+					|| (info.activityInfo.packageName.contains("tumblr"))
+					|| (info.activityInfo.packageName.contains("com.google.android.apps.plus"))
+					|| (info.activityInfo.packageName.contains("instagram"))
+					|| (info.activityInfo.packageName.contains("whatsapp"))
+//					|| (info.activityInfo.packageName.contains("email"))
+					|| (info.activityInfo.packageName.contains("com.android.mms"))
+//					|| (info.activityInfo.packageName.contains("line.android"))
+					|| (info.activityInfo.packageName.contains("com.google.android.gm"))
 			) {
 				activities.add(info);
 			}
 		}
-		
-		
-		//filter activities to known ones
+
+		Collections.sort(activities, new Comparator<ResolveInfo>() {
+
+			@Override
+			public int compare(ResolveInfo arg0, ResolveInfo arg1) {
+				return arg0.activityInfo.packageName.compareTo(arg1.activityInfo.packageName);
+
+			}
+		});
+
+		// filter activities to known ones
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle("Share via");
@@ -92,15 +106,14 @@ public class ShareHelper {
 						+ info.activityInfo.packageName + "]");
 
 				if (info.activityInfo.packageName.contains("facebook")) {
-					//facebook only shares links
-					
-					
+					// facebook only shares links
+
 					// custom facebook action
 					// new PostToFacebookDialog(context, body).show();
-//					Toast.makeText(context, "Facebook not implemented.",
-//							Toast.LENGTH_SHORT).show();
-					
-					//Facebook shares only message
+					// Toast.makeText(context, "Facebook not implemented.",
+					// Toast.LENGTH_SHORT).show();
+
+					// Facebook shares only message
 
 					Intent intent = new Intent(Intent.ACTION_SEND);
 					intent.setClassName(info.activityInfo.packageName,
@@ -108,11 +121,10 @@ public class ShareHelper {
 					intent.setType("text/plain");
 					intent.putExtra(Intent.EXTRA_TEXT, link);
 					context.startActivity(intent);
-				} else if (info.activityInfo.packageName
-						.contains("whatsapp")) {
-					
-					//whatsapp shares only message
-					String text	= message + (link==null?"":("\n"+link));
+				} else if (info.activityInfo.packageName.contains("whatsapp")) {
+
+					// whatsapp shares only message
+					String text = message + (link == null ? "" : ("\n" + link));
 
 					Intent intent = new Intent(Intent.ACTION_SEND);
 					intent.setClassName(info.activityInfo.packageName,
@@ -120,12 +132,11 @@ public class ShareHelper {
 					intent.setType("text/plain");
 					intent.putExtra(Intent.EXTRA_TEXT, text);
 					context.startActivity(intent);
-					
-				} else if (info.activityInfo.packageName
-						.contains("twitter")) {
-					
-					//twitter shares only message
-					String text	= message + (link==null?"":("\n"+link));
+
+				} else if (info.activityInfo.packageName.contains("twitter")) {
+
+					// twitter shares only message
+					String text = message + (link == null ? "" : ("\n" + link));
 
 					Intent intent = new Intent(Intent.ACTION_SEND);
 					intent.setClassName(info.activityInfo.packageName,
