@@ -1,5 +1,6 @@
 package com.axisapplications.dressme.share;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.axisapplications.dressme.R;
@@ -55,8 +56,22 @@ public class ShareHelper {
 			sendIntent.setType("image/*");
 		}
 
-		List<ResolveInfo> activities = context.getPackageManager()
+		List<ResolveInfo> activitiesUnfiltered = context.getPackageManager()
 				.queryIntentActivities(sendIntent, 0);
+		
+		
+		List<ResolveInfo> activities	= new ArrayList<ResolveInfo>();
+		for (ResolveInfo info : activitiesUnfiltered) {
+			if (
+					(info.activityInfo.packageName.contains("facebook"))||
+					(info.activityInfo.packageName.contains("twitter"))||
+					(info.activityInfo.packageName.contains("whatsapp"))||
+					(info.activityInfo.packageName.contains("instagram"))||
+					(info.activityInfo.packageName.contains("facebook"))
+			) {
+				activities.add(info);
+			}
+		}
 		
 		
 		//filter activities to known ones
@@ -94,7 +109,7 @@ public class ShareHelper {
 					intent.putExtra(Intent.EXTRA_TEXT, link);
 					context.startActivity(intent);
 				} else if (info.activityInfo.packageName
-						.contains("com.whatsapp")) {
+						.contains("whatsapp")) {
 					
 					//whatsapp shares only message
 					String text	= message + (link==null?"":("\n"+link));
