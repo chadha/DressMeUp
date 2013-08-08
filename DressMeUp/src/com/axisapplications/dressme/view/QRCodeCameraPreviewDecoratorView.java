@@ -20,13 +20,13 @@ public class QRCodeCameraPreviewDecoratorView extends View {
         super(context, attrs);
         
         paintBlackAlpha.setStyle(Paint.Style.FILL);
-        paintBlackAlpha.setColor(Color.argb(96, 0, 0, 0));
+        paintBlackAlpha.setColor(Color.argb(128, 0, 0, 0));
 
-        paintBlack.setStrokeWidth(3);
+        paintBlack.setStrokeWidth(5);
         paintBlack.setStyle(Paint.Style.STROKE);
         paintBlack.setColor(Color.BLACK);
 
-        paintWhite.setStrokeWidth(1);
+        paintWhite.setStrokeWidth(3);
         paintWhite.setStyle(Paint.Style.STROKE);
         paintWhite.setColor(Color.WHITE);
     }
