@@ -64,16 +64,17 @@ public class ShareHelper {
 
 		List<ResolveInfo> activities = new ArrayList<ResolveInfo>();
 		for (ResolveInfo info : activitiesUnfiltered) {
-			if ((info.activityInfo.packageName.contains("facebook"))
+			if (
+					(info.activityInfo.packageName.contains("facebook"))
 					|| (info.activityInfo.packageName.contains("twitter"))
 					|| (info.activityInfo.packageName.contains("tumblr"))
 					|| (info.activityInfo.packageName.contains("com.google.android.apps.plus"))
-					|| (info.activityInfo.packageName.contains("instagram"))
-					|| (info.activityInfo.packageName.contains("whatsapp"))
+//					|| (info.activityInfo.packageName.contains("instagram"))
+//					|| (info.activityInfo.packageName.contains("whatsapp"))
 //					|| (info.activityInfo.packageName.contains("email"))
-					|| (info.activityInfo.packageName.contains("com.android.mms"))
+//					|| (info.activityInfo.packageName.contains("com.android.mms"))
 //					|| (info.activityInfo.packageName.contains("line.android"))
-					|| (info.activityInfo.packageName.contains("com.google.android.gm"))
+//					|| (info.activityInfo.packageName.contains("com.google.android.gm"))
 			) {
 				activities.add(info);
 			}
@@ -121,6 +122,15 @@ public class ShareHelper {
 					intent.setType("text/plain");
 					intent.putExtra(Intent.EXTRA_TEXT, link);
 					context.startActivity(intent);
+				} else if (info.activityInfo.packageName.contains("com.google.android.apps.plus")) {
+
+					Intent intent = new Intent(Intent.ACTION_SEND);
+					intent.setClassName(info.activityInfo.packageName,
+							info.activityInfo.name);
+					intent.setType("text/plain");
+					intent.putExtra(Intent.EXTRA_TEXT, link);
+					context.startActivity(intent);
+					
 				} else if (info.activityInfo.packageName.contains("whatsapp")) {
 
 					// whatsapp shares only message
@@ -132,6 +142,7 @@ public class ShareHelper {
 					intent.setType("text/plain");
 					intent.putExtra(Intent.EXTRA_TEXT, text);
 					context.startActivity(intent);
+
 
 				} else if (info.activityInfo.packageName.contains("twitter")) {
 
