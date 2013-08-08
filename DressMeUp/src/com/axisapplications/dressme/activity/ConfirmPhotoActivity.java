@@ -75,11 +75,12 @@ public class ConfirmPhotoActivity extends BaseActivity {
 
 		// TODO move image from temp folder
 
-		ItemObject.getCurrentItemObject().timestamp = new Date();
 		// save current item object
 		RuntimeExceptionDao<ItemObject, Integer> itemObjectDao = getHelper()
 				.getItemObjectDao();
 		if (ItemObject.getCurrentItemObject().id == ItemObject.ID_UNDEFINED) {
+			ItemObject.getCurrentItemObject().timestamp = new Date();
+			
 			if (itemObjectDao.create(ItemObject.getCurrentItemObject()) != 1) {
 				showError("Could not save item");
 			}
@@ -90,6 +91,8 @@ public class ConfirmPhotoActivity extends BaseActivity {
 		}
 
 		// add photo to gallery
-		addToGallery(ItemObject.getCurrentItemObject().userItemPhoto);
+		if (ItemObject.getCurrentItemObject().userItemPhoto!=null) {
+			addToGallery(ItemObject.getCurrentItemObject().userItemPhoto);
+		}
 	}
 }

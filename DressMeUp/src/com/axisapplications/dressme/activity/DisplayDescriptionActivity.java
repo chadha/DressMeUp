@@ -1,8 +1,11 @@
 package com.axisapplications.dressme.activity;
 
+import java.util.Date;
+
 import com.axisapplications.dressme.R;
 import com.axisapplications.dressme.activity.base.BaseActivity;
 import com.axisapplications.dressme.domain.ItemObject;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -137,6 +140,33 @@ public class DisplayDescriptionActivity extends BaseActivity {
 			Toast.makeText(getApplication(),
 					"Connection failed.\n" + e.getMessage(), Toast.LENGTH_LONG)
 					.show();
+		}
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+
+		// TODO move image from temp folder
+
+		// save current item object
+		RuntimeExceptionDao<ItemObject, Integer> itemObjectDao = getHelper()
+				.getItemObjectDao();
+		if (ItemObject.getCurrentItemObject().id == ItemObject.ID_UNDEFINED) {
+			ItemObject.getCurrentItemObject().timestamp = new Date();
+			
+			if (itemObjectDao.create(ItemObject.getCurrentItemObject()) != 1) {
+				showError("Could not save item");
+			}
+		} else {
+			if (itemObjectDao.update(ItemObject.getCurrentItemObject()) != 1) {
+				showError("Could not update item");
+			}
+		}
+
+		// add photo to gallery
+		if (ItemObject.getCurrentItemObject().userItemPhoto!=null) {
+			addToGallery(ItemObject.getCurrentItemObject().userItemPhoto);
 		}
 	}
 }
