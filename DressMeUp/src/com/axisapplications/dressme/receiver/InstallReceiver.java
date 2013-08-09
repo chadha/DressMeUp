@@ -21,6 +21,8 @@ public class InstallReceiver extends BroadcastReceiver {
 				Log.d("INSTALL RECEIVER", keys + " -> " + extras.get(keys));
 			}
 			
+			//TODO do it in thread, more than 5sec kills application
+			
 			final String referrer = extras.getString("referrer");
 			Log.i("REFERRER","Referer is: "+referrer);
 			if (referrer!=null) {
