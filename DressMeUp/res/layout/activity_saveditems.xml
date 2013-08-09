@@ -54,7 +54,8 @@
             android:id="@+id/savedItems_listViewItems"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:cacheColorHint="#00000000" />
+            android:cacheColorHint="#00000000"
+            android:divider="@null" />
     </LinearLayout>
 
 </RelativeLayout>
