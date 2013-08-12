@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import android.hardware.Camera.Size;
 import com.axisapplications.dressme.R;
 import com.axisapplications.dressme.activity.base.BaseActivity;
 import com.axisapplications.dressme.domain.ItemObject;
+import com.axisapplications.dressme.receiver.InstallReceiver;
 import com.axisapplications.dressme.view.QRCodeCameraPreviewDecoratorView;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
@@ -49,6 +51,49 @@ public class CaptureCodeActivity extends BaseActivity {
 
 		setContentView(R.layout.activity1_capturecode);
 
+		//run referrer check every 500ms x 10 times
+		
+		
+		
+		new AsyncTask<Void, Void, Void>() {
+			@Override
+			protected Void doInBackground(Void... params) {
+				Log.d("REFERRER", "Will wait 10 x 500ms for referrer");
+				for (int i=0;i<10;i++) {
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						return null;
+					}
+					
+					final String referrer	= InstallReceiver.getReferrer(); 
+					if (referrer!=null) {
+						Log.i("REFERRER", "Referrer received [" + referrer + "]");
+						String[] referrerData	= referrer.split("|");
+						if (referrerData.length==2) {
+							ItemObject.getCurrentItemObject().retailerItemId	= referrerData[0];
+							ItemObject.getCurrentItemObject().retailerLocationId	= referrerData[1];
+							
+							Intent intent2 = new Intent(CaptureCodeActivity.this,
+									DisplayDescriptionActivity.class);
+							CaptureCodeActivity.this.startActivity(intent2);
+						} else {
+							Log.e("REFERRER", "Incorrect referrer [" + referrer + "]. Exit...");
+						}
+						
+						return null;
+					} else {
+						Log.d("REFERRER", "No referrer. Will wait 500ms x " + (10-i) + " times");
+					}
+					
+				}
+				
+				return null;
+			}
+		}.execute();
+		
+		
+		
 		Map<DecodeHintType, Object> hints = new EnumMap<DecodeHintType, Object>(
 				DecodeHintType.class);
 		multiFormatReader = new MultiFormatReader();
