@@ -64,6 +64,27 @@ public class DisplayDescriptionActivity extends BaseActivity {
 					Intent intent = new Intent(getApplicationContext(),
 							ImageDialogActivity.class);
 					startActivity(intent);
+					
+					
+//					final TextView message = new TextView(DisplayDescriptionActivity.this);
+//					final SpannableString s = new SpannableString(
+//							Html.fromHtml("<html><body>\n"
+//									+ "<p><font color=\"#ffffff\">Thank you for sharing our product!</font><p>\n"
+//									+ "<p><font color=\"#ffffff\">You have received one share point! You need 8 more share points to receive an discount coupon!</font><p>\n"
+//									+ "<p><font color=\"#ffffff\"><p>"
+//									+ "</body></html>"));
+//
+//					Linkify.addLinks(s, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
+//					message.setText(s);
+//					message.setMovementMethod(LinkMovementMethod.getInstance());
+//
+//					new AlertDialog.Builder(DisplayDescriptionActivity.this)
+//							.setIcon(R.drawable.ic_menu_coupon)
+//							.setTitle("Share points earned!")
+//							.setCancelable(true).setPositiveButton("Close", null)
+//							.setView(message).show();
+					
+					
 				}
 
 			});

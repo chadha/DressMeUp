@@ -19,14 +19,36 @@ class App
 
 $dressMeUpApp = new App();
 $dressMeUpApp->name = 'Dress Me Up';
-$dressMeUpApp->googlePlayRedirectLink = 'http://play.google.com/store/apps/details?id=com.axisapplications.axistravelmobile';
+$dressMeUpApp->googlePlayRedirectLink = 'market://details?id=com.axisapplications.dressme';
+//'http://play.google.com/store/apps/details?id=com.axisapplications.dressme';
 $dressMeUpApp->appStoreRedirectLink = 'http://www.dressmeup.com/download';
 $dressMeUpApp->defaultRedirectLink = 'http://www.dressmeup.com/download';
+
 
 //register all appid and matching app
 $apps = array(
 		'dm' => $dressMeUpApp,
 );
+
+
+
+//create referrer for GooglePlay redirects
+$itmid=$_REQUEST['itmid'];
+if ((is_null($itmid)) || (strlen($itmid)==0)) {
+	$itmid='';
+}
+$locid=$_REQUEST['locid'];
+if ((is_null($locid)) || (strlen($locid)==0)) {
+	$locid='';
+}
+
+$referrer='&referrer='.$itmid.'|'.$locid;
+
+// update all registed googlePlay redirects with referer
+foreach ($apps as &$app) {
+    $app->googlePlayRedirectLink = $app->googlePlayRedirectLink.$referrer;
+}
+
 
 //define
 function getClientIP() {
@@ -94,18 +116,9 @@ if ( $iPod || $iPhone || $iPad ) {
 	$redirectLink=$app->googlePlayRedirectLink;
 }
 
-
 //redirect
 header('Location: '.$redirectLink);
-
-echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'."\n";
-echo '<html>'."\n";
-echo '<head>'."\n";
-echo '</head>'."\n";
-echo '<body>'."\n";
 echo "<script>window.location='".$redirectLink."'</script>";
-echo '</body>'."\n";
-echo '</html>';
 
 logMessage('User httpUserAgent=['.$httpUserAgent.'] redirected to ['.$redirectLink.']');
 
