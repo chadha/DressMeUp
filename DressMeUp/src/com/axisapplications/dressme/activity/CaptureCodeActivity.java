@@ -70,7 +70,11 @@ public class CaptureCodeActivity extends BaseActivity {
 					if (referrer!=null) {
 						Log.i("REFERRER", "Referrer received [" + referrer + "]");
 						String[] referrerData	= referrer.trim().split("\\|");
-						if (referrerData.length==2) {
+						
+						//check id starting from HS
+						if ((referrerData.length==3)&&("HS".equalsIgnoreCase(referrerData[0]))) {
+							
+							
 							ItemObject.getCurrentItemObject().retailerItemId	= referrerData[0];
 							ItemObject.getCurrentItemObject().retailerLocationId	= referrerData[1];
 							

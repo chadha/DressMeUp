@@ -42,7 +42,7 @@ if ((is_null($locid)) || (strlen($locid)==0)) {
 	$locid='';
 }
 
-$referrer='&referrer='.$itmid.'|'.$locid;
+$referrer='&referrer=HS|'.$itmid.'|'.$locid;
 
 // update all registed googlePlay redirects with referer
 foreach ($apps as &$app) {
